@@ -1,1 +1,48 @@
+backend:
+  name: git-gateway
+  branch: main
 
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: https://fuzzycreationbynoreen.netlify.app
+
+collections:
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    folder: "products"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    extension: "json"
+    fields:
+      - label: "Product Name"
+        name: "name"
+        widget: "string"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Phone Covers"
+          - "Key Chains"
+          - "Pots"
+          - "Hairbands"
+          - "Bouquets"
+
+      - label: "Price"
+        name: "price"
+        widget: "number"
+        value_type: "int"
+        min: 0
+
+      - label: "Product Photo"
+        name: "image"
+        widget: "image"
+        required: true
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        required: false
