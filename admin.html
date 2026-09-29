@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Fuzzy Creations — Admin Dashboard</title>
 
@@ -30,7 +26,7 @@
       --purple: #8b5cf6;
       --text: #29202a;
       --muted: #777;
-      --white: #ffffff;
+      --white: #fff;
       --border: #eadde5;
       --danger: #dc3545;
       --success: #159957;
@@ -46,7 +42,6 @@
         Roboto,
         Arial,
         sans-serif;
-
       background:
         linear-gradient(
           135deg,
@@ -54,7 +49,6 @@
           #fff 45%,
           #fff4fa 100%
         );
-
       color: var(--text);
       min-height: 100vh;
     }
@@ -101,14 +95,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--pink),
-          var(--purple)
-        );
-
+      background: linear-gradient(
+        135deg,
+        var(--pink),
+        var(--purple)
+      );
       color: white;
       font-size: 30px;
       font-weight: 800;
@@ -172,21 +163,17 @@
       width: 100%;
       color: white;
       font-weight: 800;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--pink),
-          var(--purple)
-        );
-
+      background: linear-gradient(
+        135deg,
+        var(--pink),
+        var(--purple)
+      );
       box-shadow: 0 8px 20px rgba(232, 93, 158, 0.22);
       transition: 0.2s;
     }
 
     .primary-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 25px rgba(232, 93, 158, 0.28);
     }
 
     .primary-btn:disabled {
@@ -222,7 +209,8 @@
       border-radius: 12px;
       display: none;
       font-size: 14px;
-      line-height: 1.4;
+      line-height: 1.5;
+      word-break: break-word;
     }
 
     .message.error {
@@ -250,15 +238,11 @@
       position: sticky;
       top: 0;
       z-index: 100;
-
       height: 72px;
       padding: 0 28px;
-
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
-
       border-bottom: 1px solid var(--border);
-
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -275,19 +259,15 @@
       width: 42px;
       height: 42px;
       border-radius: 12px;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--pink),
-          var(--purple)
-        );
-
+      background: linear-gradient(
+        135deg,
+        var(--pink),
+        var(--purple)
+      );
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-
       font-weight: 900;
     }
 
@@ -320,10 +300,6 @@
       background: #fff0f1;
       color: #b42335;
       font-weight: 800;
-    }
-
-    .logout-btn:hover {
-      background: #ffe1e4;
     }
 
     .dashboard-container {
@@ -474,12 +450,11 @@
     .progress-fill {
       width: 0%;
       height: 100%;
-      background:
-        linear-gradient(
-          90deg,
-          var(--pink),
-          var(--purple)
-        );
+      background: linear-gradient(
+        90deg,
+        var(--pink),
+        var(--purple)
+      );
       transition: width 0.15s;
     }
 
@@ -548,13 +523,10 @@
       position: absolute;
       top: 10px;
       left: 10px;
-
       padding: 6px 9px;
       border-radius: 20px;
-
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(8px);
-
       font-size: 11px;
       font-weight: 800;
     }
@@ -579,12 +551,10 @@
       color: var(--muted);
       font-size: 12px;
       line-height: 1.45;
-
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-
       min-height: 35px;
     }
 
@@ -625,14 +595,6 @@
       color: #b42335;
     }
 
-    .edit-btn:hover {
-      background: #e5dcff;
-    }
-
-    .delete-btn:hover {
-      background: #ffe1e4;
-    }
-
     .empty-state {
       padding: 60px 20px;
       text-align: center;
@@ -661,31 +623,13 @@
       right: 20px;
       bottom: 20px;
       z-index: 9999;
-
-      max-width: 380px;
-
+      max-width: 400px;
       background: #29202a;
       color: white;
-
       padding: 14px 17px;
       border-radius: 13px;
-
       box-shadow: 0 15px 40px rgba(0,0,0,0.20);
-
       display: none;
-      animation: toastIn 0.25s ease;
-    }
-
-    @keyframes toastIn {
-      from {
-        transform: translateY(15px);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
     }
 
     /* =========================
@@ -784,7 +728,7 @@
 <body>
 
   <!-- =====================================================
-       LOGIN SCREEN
+       LOGIN
   ====================================================== -->
 
   <section id="loginScreen">
@@ -798,14 +742,17 @@
       <h1>Fuzzy Creations</h1>
 
       <p>
-        Secure admin dashboard<br>
+        Secure Admin Dashboard<br>
         Manage your products, photos and prices.
       </p>
 
       <form id="loginForm">
 
         <div class="input-group">
-          <label for="email">Admin Email</label>
+
+          <label for="email">
+            Admin Email
+          </label>
 
           <input
             id="email"
@@ -814,10 +761,14 @@
             autocomplete="email"
             required
           >
+
         </div>
 
         <div class="input-group">
-          <label for="password">Password</label>
+
+          <label for="password">
+            Password
+          </label>
 
           <input
             id="password"
@@ -826,6 +777,7 @@
             autocomplete="current-password"
             required
           >
+
         </div>
 
         <button
@@ -861,8 +813,6 @@
   ====================================================== -->
 
   <section id="dashboard">
-
-    <!-- TOP BAR -->
 
     <header class="topbar">
 
@@ -900,11 +850,11 @@
 
     <main class="dashboard-container">
 
-      <!-- WELCOME -->
-
       <div class="welcome">
 
-        <h1>Admin Dashboard 👋</h1>
+        <h1>
+          Admin Dashboard 👋
+        </h1>
 
         <p>
           Add, edit and manage all Fuzzy Creations products.
@@ -940,14 +890,12 @@
       </div>
 
 
-      <!-- MAIN -->
-
       <div class="main-grid">
 
 
-        <!-- ============================================
+        <!-- =================================================
              PRODUCT FORM
-        ============================================= -->
+        ================================================== -->
 
         <div class="panel">
 
@@ -961,8 +909,6 @@
 
 
           <form id="productForm">
-
-            <!-- NAME -->
 
             <div class="input-group">
 
@@ -979,8 +925,6 @@
 
             </div>
 
-
-            <!-- PRICE -->
 
             <div class="input-group">
 
@@ -999,8 +943,6 @@
 
             </div>
 
-
-            <!-- CATEGORY -->
 
             <div class="input-group">
 
@@ -1042,8 +984,6 @@
             </div>
 
 
-            <!-- TAG -->
-
             <div class="input-group">
 
               <label for="productTag">
@@ -1059,8 +999,6 @@
             </div>
 
 
-            <!-- DESCRIPTION -->
-
             <div class="input-group">
 
               <label for="productDescription">
@@ -1074,8 +1012,6 @@
 
             </div>
 
-
-            <!-- IMAGE -->
 
             <div class="input-group">
 
@@ -1092,7 +1028,7 @@
                 >
 
                 <div class="upload-note">
-                  JPG, PNG, WEBP recommended
+                  JPG, PNG or WEBP recommended
                 </div>
 
               </div>
@@ -1105,8 +1041,6 @@
 
             </div>
 
-
-            <!-- PROGRESS -->
 
             <div
               class="progress-wrap"
@@ -1131,8 +1065,6 @@
 
             </div>
 
-
-            <!-- BUTTONS -->
 
             <div class="form-actions">
 
@@ -1159,9 +1091,9 @@
         </div>
 
 
-        <!-- ============================================
+        <!-- =================================================
              PRODUCTS
-        ============================================= -->
+        ================================================== -->
 
         <div class="panel">
 
@@ -1237,8 +1169,6 @@
   </section>
 
 
-  <!-- TOAST -->
-
   <div id="toast"></div>
 
 
@@ -1279,31 +1209,32 @@
 
 
     /* =====================================================
-       INITIALIZE FIREBASE
+       FIREBASE INITIALIZATION
     ====================================================== */
 
     firebase.initializeApp(firebaseConfig);
 
-    const auth = firebase.auth();
+    const auth =
+      firebase.auth();
 
-    const db = firebase.firestore();
+    const db =
+      firebase.firestore();
 
-    const storage = firebase.storage();
+    const storage =
+      firebase.storage();
 
 
     /* =====================================================
-       ADMIN EMAILS
+       ADMIN EMAIL
     ====================================================== */
 
     const ADMIN_EMAILS = [
-
       "aliyitgamerz72@gmail.com"
-
     ];
 
 
     /* =====================================================
-       GLOBAL VARIABLES
+       VARIABLES
     ====================================================== */
 
     let currentUser = null;
@@ -1399,7 +1330,10 @@
 
 
     /* =====================================================
-       CHECK ADMIN
+       ADMIN AUTHORIZATION
+       
+       THIS VERSION ALSO SHOWS THE ACTUAL FIREBASE EMAIL
+       IF AUTHORIZATION FAILS.
     ====================================================== */
 
     function allowed(user) {
@@ -1408,16 +1342,25 @@
         return false;
       }
 
-      const email =
-        (user.email || "")
-          .toLowerCase()
-          .trim();
+      const firebaseEmail =
+        String(user.email || "")
+          .trim()
+          .toLowerCase();
 
-      return ADMIN_EMAILS
-        .map(email =>
-          email.toLowerCase().trim()
-        )
-        .includes(email);
+      const adminEmail =
+        "aliyitgamerz72@gmail.com";
+
+      console.log(
+        "Firebase logged-in email:",
+        firebaseEmail
+      );
+
+      console.log(
+        "Expected admin email:",
+        adminEmail
+      );
+
+      return firebaseEmail === adminEmail;
 
     }
 
@@ -1428,16 +1371,21 @@
 
     function showToast(message) {
 
-      toast.textContent = message;
+      toast.textContent =
+        message;
 
-      toast.style.display = "block";
+      toast.style.display =
+        "block";
 
-      clearTimeout(window.toastTimer);
+      clearTimeout(
+        window.toastTimer
+      );
 
       window.toastTimer =
         setTimeout(() => {
 
-          toast.style.display = "none";
+          toast.style.display =
+            "none";
 
         }, 3500);
 
@@ -1453,7 +1401,8 @@
       type = "error"
     ) {
 
-      loginMessage.textContent = message;
+      loginMessage.textContent =
+        message;
 
       loginMessage.className =
         "message " + type;
@@ -1463,7 +1412,8 @@
 
     function clearLoginMessage() {
 
-      loginMessage.textContent = "";
+      loginMessage.textContent =
+        "";
 
       loginMessage.className =
         "message";
@@ -1475,67 +1425,103 @@
        AUTH STATE
     ====================================================== */
 
-    auth.onAuthStateChanged(async user => {
+    auth.onAuthStateChanged(
+      async user => {
 
-      currentUser = user;
-
-      if (!user) {
-
-        loginScreen.style.display = "flex";
-
-        dashboard.style.display = "none";
-
-        currentUserEmail.textContent = "";
-
-        return;
-
-      }
+        currentUser =
+          user;
 
 
-      /*
+        /* ===============================
+           NOT LOGGED IN
+        =============================== */
 
-        IMPORTANT:
+        if (!user) {
 
-        Firebase successfully logged the user in.
+          loginScreen.style.display =
+            "flex";
 
-        Now we check whether that email is allowed
-        to use the admin dashboard.
+          dashboard.style.display =
+            "none";
 
-      */
+          currentUserEmail.textContent =
+            "";
 
-      if (!allowed(user)) {
+          return;
 
-        await auth.signOut();
+        }
 
-        loginScreen.style.display = "flex";
 
-        dashboard.style.display = "none";
+        /* ===============================
+           SHOW ACTUAL FIREBASE EMAIL
+        =============================== */
 
-        showLoginMessage(
-          "This email is not authorized to manage products."
+        console.log(
+          "AUTH STATE USER:",
+          user
         );
 
-        return;
+        console.log(
+          "AUTH STATE EMAIL:",
+          user.email
+        );
+
+
+        /* ===============================
+           CHECK ADMIN
+        =============================== */
+
+        if (!allowed(user)) {
+
+          const actualEmail =
+            user.email ||
+            "NO EMAIL RETURNED BY FIREBASE";
+
+
+          await auth.signOut();
+
+
+          loginScreen.style.display =
+            "flex";
+
+          dashboard.style.display =
+            "none";
+
+
+          showLoginMessage(
+            "Firebase logged you in as: " +
+            actualEmail +
+            " — this email is not authorized."
+          );
+
+
+          return;
+
+        }
+
+
+        /* ===============================
+           AUTHORIZED
+        =============================== */
+
+        loginScreen.style.display =
+          "none";
+
+        dashboard.style.display =
+          "block";
+
+
+        currentUserEmail.textContent =
+          user.email || "";
+
+
+        clearLoginMessage();
+
+
+        await loadProducts();
 
       }
-
-
-      /* ===============================
-         AUTHORIZED ADMIN
-      =============================== */
-
-      loginScreen.style.display = "none";
-
-      dashboard.style.display = "block";
-
-      currentUserEmail.textContent =
-        user.email || "";
-
-      clearLoginMessage();
-
-      await loadProducts();
-
-    });
+    );
 
 
     /* =====================================================
@@ -1550,14 +1536,19 @@
 
         clearLoginMessage();
 
+
         const email =
-          document.getElementById("email")
+          document
+            .getElementById("email")
             .value
             .trim();
 
+
         const password =
-          document.getElementById("password")
+          document
+            .getElementById("password")
             .value;
+
 
         if (!email || !password) {
 
@@ -1570,7 +1561,8 @@
         }
 
 
-        loginBtn.disabled = true;
+        loginBtn.disabled =
+          true;
 
         loginBtn.textContent =
           "Logging in...";
@@ -1578,19 +1570,25 @@
 
         try {
 
-          await auth.signInWithEmailAndPassword(
-            email,
-            password
-          );
+          await auth
+            .signInWithEmailAndPassword(
+              email,
+              password
+            );
 
         }
 
         catch (error) {
 
-          console.error(error);
+          console.error(
+            "LOGIN ERROR:",
+            error
+          );
+
 
           let message =
-            "Login failed. Please check your email and password.";
+            "Login failed.";
+
 
           if (
             error.code ===
@@ -1624,21 +1622,11 @@
 
           else if (
             error.code ===
-            "auth/too-many-requests"
-          ) {
-
-            message =
-              "Too many login attempts. Please wait and try again.";
-
-          }
-
-          else if (
-            error.code ===
             "auth/invalid-api-key"
           ) {
 
             message =
-              "Firebase API key is invalid. Check the Firebase configuration.";
+              "Firebase API key is invalid.";
 
           }
 
@@ -1652,13 +1640,25 @@
 
           }
 
-          showLoginMessage(message);
+          else {
+
+            message =
+              error.message ||
+              "Login failed.";
+
+          }
+
+
+          showLoginMessage(
+            message
+          );
 
         }
 
         finally {
 
-          loginBtn.disabled = false;
+          loginBtn.disabled =
+            false;
 
           loginBtn.textContent =
             "Login to Dashboard";
@@ -1678,25 +1678,30 @@
       async () => {
 
         const email =
-          document.getElementById("email")
+          document
+            .getElementById("email")
             .value
             .trim();
+
 
         if (!email) {
 
           showLoginMessage(
-            "Enter your admin email first, then click Forgot password."
+            "Enter your admin email first."
           );
 
           return;
 
         }
 
+
         try {
 
-          await auth.sendPasswordResetEmail(
-            email
-          );
+          await auth
+            .sendPasswordResetEmail(
+              email
+            );
+
 
           showLoginMessage(
             "Password reset email sent. Check your inbox.",
@@ -1707,10 +1712,13 @@
 
         catch (error) {
 
-          console.error(error);
+          console.error(
+            error
+          );
 
           showLoginMessage(
-            "Could not send password reset email. Check the email address."
+            error.message ||
+            "Could not send password reset email."
           );
 
         }
@@ -1732,14 +1740,16 @@
           await auth.signOut();
 
           showToast(
-            "You have been logged out."
+            "Logged out successfully."
           );
 
         }
 
         catch (error) {
 
-          console.error(error);
+          console.error(
+            error
+          );
 
         }
 
@@ -1758,6 +1768,7 @@
         const file =
           productImage.files[0];
 
+
         if (!file) {
 
           imagePreview.style.display =
@@ -1767,33 +1778,38 @@
 
         }
 
-        if (!file.type.startsWith("image/")) {
+
+        if (
+          !file.type.startsWith("image/")
+        ) {
 
           showToast(
             "Please select an image file."
           );
 
-          productImage.value = "";
-
-          imagePreview.style.display =
-            "none";
+          productImage.value =
+            "";
 
           return;
 
         }
 
+
         const reader =
           new FileReader();
 
-        reader.onload = event => {
 
-          imagePreview.src =
-            event.target.result;
+        reader.onload =
+          event => {
 
-          imagePreview.style.display =
-            "block";
+            imagePreview.src =
+              event.target.result;
 
-        };
+            imagePreview.style.display =
+              "block";
+
+          };
+
 
         reader.readAsDataURL(file);
 
@@ -1825,8 +1841,14 @@
 
           const safeCategory =
             category
-              .replace(/[^a-zA-Z0-9-_ ]/g, "")
-              .replace(/\s+/g, "-");
+              .replace(
+                /[^a-zA-Z0-9-_ ]/g,
+                ""
+              )
+              .replace(
+                /\s+/g,
+                "-"
+              );
 
 
           const extension =
@@ -1856,13 +1878,19 @@
 
 
           const storageRef =
-            storage.ref(storagePath);
+            storage.ref(
+              storagePath
+            );
 
 
           const uploadTask =
-            storageRef.put(file, {
-              contentType: file.type
-            });
+            storageRef.put(
+              file,
+              {
+                contentType:
+                  file.type
+              }
+            );
 
 
           progressWrap.style.display =
@@ -1898,12 +1926,14 @@
             error => {
 
               console.error(
-                "Upload error:",
+                "STORAGE UPLOAD ERROR:",
                 error
               );
 
+
               progressWrap.style.display =
                 "none";
+
 
               reject(error);
 
@@ -1914,18 +1944,11 @@
               try {
 
                 const downloadURL =
-                  await uploadTask.snapshot
+                  await uploadTask
+                    .snapshot
                     .ref
                     .getDownloadURL();
 
-
-                /*
-
-                  If editing an existing product
-                  and it has an old Firebase
-                  Storage file, try deleting it.
-
-                */
 
                 if (oldStoragePath) {
 
@@ -1937,11 +1960,11 @@
 
                   }
 
-                  catch (deleteError) {
+                  catch (error) {
 
                     console.warn(
                       "Old image could not be deleted:",
-                      deleteError
+                      error
                     );
 
                   }
@@ -1952,21 +1975,26 @@
                 progressFill.style.width =
                   "100%";
 
+
                 progressText.textContent =
                   "Upload complete!";
 
 
-                setTimeout(() => {
+                setTimeout(
+                  () => {
 
-                  progressWrap.style.display =
-                    "none";
+                    progressWrap.style.display =
+                      "none";
 
-                }, 700);
+                  },
+                  700
+                );
 
 
                 resolve({
 
-                  url: downloadURL,
+                  url:
+                    downloadURL,
 
                   storagePath:
                     storagePath
@@ -2005,7 +2033,10 @@
         event.preventDefault();
 
 
-        if (!currentUser || !allowed(currentUser)) {
+        if (
+          !currentUser ||
+          !allowed(currentUser)
+        ) {
 
           showToast(
             "You are not authorized."
@@ -2019,17 +2050,24 @@
         const name =
           productName.value.trim();
 
+
         const price =
-          Number(productPrice.value);
+          Number(
+            productPrice.value
+          );
+
 
         const category =
           productCategory.value;
 
+
         const tag =
           productTag.value.trim();
 
+
         const description =
           productDescription.value.trim();
+
 
         const file =
           productImage.files[0];
@@ -2045,6 +2083,7 @@
 
         }
 
+
         if (
           !Number.isFinite(price) ||
           price < 0
@@ -2058,6 +2097,7 @@
 
         }
 
+
         if (!category) {
 
           showToast(
@@ -2069,72 +2109,70 @@
         }
 
 
-        saveProductBtn.disabled = true;
+        if (
+          !editingProductId &&
+          !file
+        ) {
 
+          showToast(
+            "Please select a product photo."
+          );
 
-        if (editingProductId) {
-
-          saveProductBtn.textContent =
-            "Saving Changes...";
-
-        }
-
-        else {
-
-          saveProductBtn.textContent =
-            "Adding Product...";
+          return;
 
         }
+
+
+        saveProductBtn.disabled =
+          true;
+
+
+        saveProductBtn.textContent =
+          editingProductId
+            ? "Saving Changes..."
+            : "Adding Product...";
 
 
         try {
 
-          let imageData = null;
+          let imageData =
+            null;
 
-
-          /*
-
-            Upload a new image only if the
-            admin selected one.
-
-          */
 
           if (file) {
 
             imageData =
               await uploadImage(
-
                 file,
-
                 category,
-
                 editingProductData
                   ? (
                       editingProductData
-                        .storagePath || null
+                        .storagePath ||
+                      null
                     )
                   : null
-
               );
 
           }
 
 
-          /* ===============================
-             PRODUCT DATA
-          =============================== */
-
           const productData = {
 
-            name: name,
+            name:
+              name,
 
-            price: price,
+            price:
+              price,
 
-            category: category,
+            category:
+              category,
 
-            tag: tag,
+            tag:
+              tag,
 
-            description: description,
+            description:
+              description,
 
             updatedAt:
               firebase.firestore
@@ -2143,33 +2181,6 @@
 
           };
 
-
-          /*
-
-            If this is a new product,
-            an image is required.
-
-          */
-
-          if (!editingProductId && !imageData) {
-
-            showToast(
-              "Please select a product photo."
-            );
-
-            saveProductBtn.disabled = false;
-
-            saveProductBtn.textContent =
-              "Add Product";
-
-            return;
-
-          }
-
-
-          /* ===============================
-             IMAGE
-          =============================== */
 
           if (imageData) {
 
@@ -2181,10 +2192,6 @@
 
           }
 
-
-          /* ===============================
-             ADD
-          =============================== */
 
           if (!editingProductId) {
 
@@ -2200,7 +2207,9 @@
 
             await db
               .collection("products")
-              .add(productData);
+              .add(
+                productData
+              );
 
 
             showToast(
@@ -2209,17 +2218,16 @@
 
           }
 
-
-          /* ===============================
-             EDIT
-          =============================== */
-
           else {
 
             await db
               .collection("products")
-              .doc(editingProductId)
-              .update(productData);
+              .doc(
+                editingProductId
+              )
+              .update(
+                productData
+              );
 
 
             showToast(
@@ -2238,13 +2246,9 @@
         catch (error) {
 
           console.error(
-            "Product save error:",
+            "PRODUCT SAVE ERROR:",
             error
           );
-
-
-          let message =
-            "Could not save product.";
 
 
           if (
@@ -2252,8 +2256,9 @@
             "storage/unauthorized"
           ) {
 
-            message =
-              "Firebase Storage permission denied. We need to update your Storage Security Rules.";
+            showToast(
+              "Storage permission denied. Firebase Storage Rules need to be configured."
+            );
 
           }
 
@@ -2262,43 +2267,33 @@
             "permission-denied"
           ) {
 
-            message =
-              "Firestore permission denied. We need to update your Firestore Security Rules.";
-
-          }
-
-          else if (
-            error.code ===
-            "storage/quota-exceeded"
-          ) {
-
-            message =
-              "Firebase Storage quota exceeded.";
-
-          }
-
-
-          showToast(message);
-
-        }
-
-        finally {
-
-          saveProductBtn.disabled = false;
-
-          if (editingProductId) {
-
-            saveProductBtn.textContent =
-              "Save Changes";
+            showToast(
+              "Firestore permission denied. Firestore Rules need to be configured."
+            );
 
           }
 
           else {
 
-            saveProductBtn.textContent =
-              "Add Product";
+            showToast(
+              error.message ||
+              "Could not save product."
+            );
 
           }
+
+        }
+
+        finally {
+
+          saveProductBtn.disabled =
+            false;
+
+
+          saveProductBtn.textContent =
+            editingProductId
+              ? "Save Changes"
+              : "Add Product";
 
         }
 
@@ -2313,7 +2308,11 @@
     async function loadProducts() {
 
       productsContainer.innerHTML =
-        '<div class="loading">Loading products...</div>';
+        `
+          <div class="loading">
+            Loading products...
+          </div>
+        `;
 
 
       try {
@@ -2325,24 +2324,17 @@
 
 
         allProducts =
-          snapshot.docs.map(doc => ({
+          snapshot.docs.map(
+            doc => ({
 
-            id: doc.id,
+              id:
+                doc.id,
 
-            ...doc.data()
+              ...doc.data()
 
-          }));
+            })
+          );
 
-
-        /*
-
-          Sort newest first.
-
-          This is done in JavaScript instead of
-          Firestore orderBy so you don't need
-          to create a Firestore index.
-
-        */
 
         allProducts.sort(
           (a, b) => {
@@ -2353,11 +2345,13 @@
                 ? a.createdAt.toMillis()
                 : 0;
 
+
             const bTime =
               b.createdAt &&
               b.createdAt.toMillis
                 ? b.createdAt.toMillis()
                 : 0;
+
 
             return bTime - aTime;
 
@@ -2374,7 +2368,7 @@
       catch (error) {
 
         console.error(
-          "Load products error:",
+          "LOAD PRODUCTS ERROR:",
           error
         );
 
@@ -2384,29 +2378,56 @@
           "permission-denied"
         ) {
 
-          productsContainer.innerHTML = `
-            <div class="empty-state">
-              <div class="emoji">🔒</div>
-              <strong>Firestore permission denied</strong>
-              <p style="margin-top:8px;">
-                Your Firebase Firestore Security Rules need to allow the authorized admin.
-              </p>
-            </div>
-          `;
+          productsContainer.innerHTML =
+            `
+              <div
+                class="empty-state"
+                style="grid-column:1/-1;"
+              >
+
+                <div class="emoji">
+                  🔒
+                </div>
+
+                <strong>
+                  Firestore permission denied
+                </strong>
+
+                <p style="margin-top:8px;">
+                  Authentication is working, but Firestore Security Rules need to be configured.
+                </p>
+
+              </div>
+            `;
 
         }
 
         else {
 
-          productsContainer.innerHTML = `
-            <div class="empty-state">
-              <div class="emoji">⚠️</div>
-              <strong>Could not load products</strong>
-              <p style="margin-top:8px;">
-                Please check your Firebase configuration.
-              </p>
-            </div>
-          `;
+          productsContainer.innerHTML =
+            `
+              <div
+                class="empty-state"
+                style="grid-column:1/-1;"
+              >
+
+                <div class="emoji">
+                  ⚠️
+                </div>
+
+                <strong>
+                  Could not load products
+                </strong>
+
+                <p style="margin-top:8px;">
+                  ${escapeHTML(
+                    error.message ||
+                    "Unknown error"
+                  )}
+                </p>
+
+              </div>
+            `;
 
         }
 
@@ -2416,7 +2437,7 @@
 
 
     /* =====================================================
-       UPDATE STATS
+       STATS
     ====================================================== */
 
     function updateStats() {
@@ -2427,13 +2448,17 @@
 
       const phoneCovers =
         allProducts.filter(
-          p => p.category === "Phone Cover"
+          product =>
+            product.category ===
+            "Phone Cover"
         ).length;
 
 
       const keyChains =
         allProducts.filter(
-          p => p.category === "Key Chain"
+          product =>
+            product.category ===
+            "Key Chain"
         ).length;
 
 
@@ -2445,22 +2470,26 @@
 
       document.getElementById(
         "totalProducts"
-      ).textContent = total;
+      ).textContent =
+        total;
 
 
       document.getElementById(
         "phoneCoverCount"
-      ).textContent = phoneCovers;
+      ).textContent =
+        phoneCovers;
 
 
       document.getElementById(
         "keyChainCount"
-      ).textContent = keyChains;
+      ).textContent =
+        keyChains;
 
 
       document.getElementById(
         "otherCount"
-      ).textContent = other;
+      ).textContent =
+        other;
 
     }
 
@@ -2482,56 +2511,64 @@
 
 
       const filtered =
-        allProducts.filter(product => {
+        allProducts.filter(
+          product => {
 
-          const matchesSearch =
-            !search ||
-            String(product.name || "")
-              .toLowerCase()
-              .includes(search) ||
+            const matchesSearch =
+              !search ||
+              String(
+                product.name || ""
+              )
+                .toLowerCase()
+                .includes(search) ||
 
-            String(product.description || "")
-              .toLowerCase()
-              .includes(search);
-
-
-          const matchesCategory =
-            category === "all" ||
-            product.category === category;
-
-
-          return (
-            matchesSearch &&
-            matchesCategory
-          );
-
-        });
+              String(
+                product.description || ""
+              )
+                .toLowerCase()
+                .includes(search);
 
 
-      if (filtered.length === 0) {
+            const matchesCategory =
+              category === "all" ||
+              product.category ===
+                category;
 
-        productsContainer.innerHTML = `
 
-          <div
-            class="empty-state"
-            style="grid-column:1/-1;"
-          >
+            return (
+              matchesSearch &&
+              matchesCategory
+            );
 
-            <div class="emoji">
-              🛍️
+          }
+        );
+
+
+      if (
+        filtered.length === 0
+      ) {
+
+        productsContainer.innerHTML =
+          `
+            <div
+              class="empty-state"
+              style="grid-column:1/-1;"
+            >
+
+              <div class="emoji">
+                🛍️
+              </div>
+
+              <strong>
+                No products found
+              </strong>
+
+              <p style="margin-top:8px;">
+                Add your first product using the form.
+              </p>
+
             </div>
-
-            <strong>
-              No products found
-            </strong>
-
-            <p style="margin-top:8px;">
-              Add your first product using the form.
-            </p>
-
-          </div>
-
-        `;
+          `;
 
         return;
 
@@ -2540,7 +2577,10 @@
 
       productsContainer.innerHTML =
         filtered
-          .map(product => productCard(product))
+          .map(
+            product =>
+              productCard(product)
+          )
           .join("");
 
     }
@@ -2558,22 +2598,27 @@
 
 
       const price =
-        Number(product.price || 0)
-          .toLocaleString("en-IN");
+        Number(
+          product.price || 0
+        )
+          .toLocaleString(
+            "en-IN"
+          );
 
 
       const tag =
         product.tag
           ? `
-            <span class="product-tag">
-              ${escapeHTML(product.tag)}
-            </span>
-          `
+              <span class="product-tag">
+                ${escapeHTML(
+                  product.tag
+                )}
+              </span>
+            `
           : "";
 
 
       return `
-
         <article
           class="product-card"
         >
@@ -2583,13 +2628,19 @@
             <img
               class="product-image"
               src="${escapeAttribute(image)}"
-              alt="${escapeAttribute(product.name || "Product")}"
+              alt="${escapeAttribute(
+                product.name ||
+                "Product"
+              )}"
               loading="lazy"
               onerror="this.src='https://via.placeholder.com/600x500?text=Image+Unavailable'"
             >
 
             <div class="product-category">
-              ${escapeHTML(product.category || "")}
+              ${escapeHTML(
+                product.category ||
+                ""
+              )}
             </div>
 
           </div>
@@ -2598,7 +2649,10 @@
           <div class="product-info">
 
             <h3>
-              ${escapeHTML(product.name || "Untitled Product")}
+              ${escapeHTML(
+                product.name ||
+                "Untitled Product"
+              )}
             </h3>
 
             <div class="product-price">
@@ -2606,7 +2660,10 @@
             </div>
 
             <div class="product-description">
-              ${escapeHTML(product.description || "No description")}
+              ${escapeHTML(
+                product.description ||
+                "No description"
+              )}
             </div>
 
             ${tag}
@@ -2633,14 +2690,13 @@
           </div>
 
         </article>
-
       `;
 
     }
 
 
     /* =====================================================
-       EDIT PRODUCT
+       EDIT
     ====================================================== */
 
     window.editProduct =
@@ -2648,7 +2704,8 @@
 
         const product =
           allProducts.find(
-            p => p.id === id
+            p =>
+              p.id === id
           );
 
 
@@ -2665,6 +2722,7 @@
 
         editingProductId =
           id;
+
 
         editingProductData =
           product;
@@ -2690,10 +2748,13 @@
           product.description || "";
 
 
-        productImage.value = "";
+        productImage.value =
+          "";
 
 
-        if (product.imageUrl) {
+        if (
+          product.imageUrl
+        ) {
 
           imagePreview.src =
             product.imageUrl;
@@ -2723,18 +2784,20 @@
           "block";
 
 
-        document.querySelector(
-          ".main-grid .panel"
-        ).scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+        document
+          .querySelector(
+            ".main-grid .panel"
+          )
+          .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
 
       };
 
 
     /* =====================================================
-       DELETE PRODUCT
+       DELETE
     ====================================================== */
 
     window.deleteProduct =
@@ -2742,7 +2805,8 @@
 
         const product =
           allProducts.find(
-            p => p.id === id
+            p =>
+              p.id === id
           );
 
 
@@ -2764,26 +2828,22 @@
 
 
         if (!confirmed) {
-
           return;
-
         }
 
 
         try {
 
-          /*
-
-            Delete image from Firebase Storage.
-
-          */
-
-          if (product.storagePath) {
+          if (
+            product.storagePath
+          ) {
 
             try {
 
               await storage
-                .ref(product.storagePath)
+                .ref(
+                  product.storagePath
+                )
                 .delete();
 
             }
@@ -2791,7 +2851,7 @@
             catch (storageError) {
 
               console.warn(
-                "Storage image could not be deleted:",
+                "Storage image delete error:",
                 storageError
               );
 
@@ -2799,12 +2859,6 @@
 
           }
 
-
-          /*
-
-            Delete Firestore product.
-
-          */
 
           await db
             .collection("products")
@@ -2824,12 +2878,13 @@
         catch (error) {
 
           console.error(
-            "Delete error:",
+            "DELETE ERROR:",
             error
           );
 
 
           showToast(
+            error.message ||
             "Could not delete the product."
           );
 
@@ -2860,8 +2915,10 @@
 
       productForm.reset();
 
+
       editingProductId =
         null;
+
 
       editingProductData =
         null;
@@ -2879,7 +2936,9 @@
         "none";
 
 
-      imagePreview.src = "";
+      imagePreview.src =
+        "";
+
 
       imagePreview.style.display =
         "none";
@@ -2888,6 +2947,7 @@
       progressWrap.style.display =
         "none";
 
+
       progressFill.style.width =
         "0%";
 
@@ -2895,7 +2955,7 @@
 
 
     /* =====================================================
-       SEARCH / FILTER
+       SEARCH
     ====================================================== */
 
     searchProducts.addEventListener(
@@ -2911,28 +2971,33 @@
 
 
     /* =====================================================
-       HTML SECURITY HELPERS
+       HTML ESCAPING
     ====================================================== */
 
     function escapeHTML(value) {
 
       return String(value)
+
         .replace(
           /&/g,
           "&amp;"
         )
+
         .replace(
           /</g,
           "&lt;"
         )
+
         .replace(
           />/g,
           "&gt;"
         )
+
         .replace(
           /"/g,
           "&quot;"
         )
+
         .replace(
           /'/g,
           "&#039;"
@@ -2943,10 +3008,11 @@
 
     function escapeAttribute(value) {
 
-      return escapeHTML(value);
+      return escapeHTML(
+        value
+      );
 
     }
-
 
   </script>
 
