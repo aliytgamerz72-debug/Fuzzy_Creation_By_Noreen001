@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fuzzy Creations · Product Manager</title>
+
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-storage-compat.js"></script>
+
+<style>
+:root{
+  --rose:#c65f82;
+  --rose2:#e88faa;
+  --cream:#fffaf7;
+  --ink:#30242a;
+  --muted:#75656c;
+  --line:#ead9df;
+  --green:#25d366;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:linear-gradient(135deg,#fffaf7,#f9dce6);
+  color:var(--ink);
+  font-family:Arial,sans-serif;
+  min-height:100vh;
+}
+
+.wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:28px 18px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.brand{
+  font:700 24px Georgia;
+}
+
+.brand span{
+  color:var(--rose);
+}
+
+button{
+  border:0;
+  border-radius:12px;
+  padding:12px 16px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.primary{
+  background:var(--rose);
+  color:#fff;
+}
+
+.secondary{
+  background:#fff;
+  border:1px solid var(--line);
+}
+
+.danger{
+  background:#ffe5eb;
+  color:#a52d50;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+  box-shadow:0 15px 45px #5e2d3d18;
+  margin-bottom:18px;
+}
+
+.login{
+  max-width:430px;
+  margin:8vh auto;
+}
+
+.h{
+  font:700 34px Georgia;
+  margin:5px 0 10px;
+}
+
+.muted{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.cats{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  margin:18px 0;
+}
+
+.cat{
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--muted);
+}
+
+.cat.active{
+  background:var(--rose);
+  color:#fff;
+}
+
+.formgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-size:12px;
+  font-weight:700;
+  color:var(--muted);
+}
+
+input,textarea,select{
+  width:100%;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  font:inherit;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.photo{
+  border:2px dashed var(--line);
+  padding:20px;
+  border-radius:16px;
+  text-align:center;
+}
+
+.preview{
+  max-width:180px;
+  max-height:180px;
+  border-radius:15px;
+  margin-top:12px;
+  display:none;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
+}
+
+.item{
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.item img{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+}
+
+.itembody{
+  padding:13px;
+}
+
+.itemname{
+  font-weight:700;
+}
+
+.itemprice{
+  color:var(--rose);
+  font-weight:800;
+  margin:5px 0 10px;
+}
+
+.actions{
+  display:flex;
+  gap:7px;
+}
+
+.actions button{
+  flex:1;
+  padding:9px;
+  font-size:11px;
+}
+
+.status{
+  padding:12px;
+  border-radius:12px;
+  background:#fff5f8;
+  color:var(--rose);
+  display:none;
+  margin-bottom:14px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(max-width:750px){
+  .cats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .formgrid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .top{
+    align-items:flex-start;
+  }
+
+  .brand{
+    font-size:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <!-- LOGIN -->
+  <div id="loginCard" class="card login">
+
+    <div class="brand">
+      FUZZY <span>CREATIONS</span>
+    </div>
+
+    <h1 class="h">Admin Login</h1>
+
+    <p class="muted">
+      Only your authorized Firebase account can manage products.
+    </p>
+
+    <div class="field">
+      <label>Email</label>
+      <input
+        id="email"
+        type="email"
+        autocomplete="email"
+        placeholder="Enter admin email"
+      >
+    </div>
+
+    <br>
+
+    <div class="field">
+      <label>Password</label>
+      <input
+        id="password"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter password"
+      >
+    </div>
+
+    <br>
+
+    <button class="primary" id="loginBtn">
+      Sign in
+    </button>
+
+    <p id="loginMsg" class="muted"></p>
+
+  </div>
+
+
+  <!-- ADMIN APP -->
+  <div id="app" class="hidden">
+
+    <div class="top">
+
+      <div>
+        <div class="brand">
+          FUZZY <span>CREATIONS</span>
+        </div>
+
+        <div class="muted">
+          Product Manager
+        </div>
+      </div>
+
+      <button class="secondary" id="logoutBtn">
+        Log out
+      </button>
+
+    </div>
+
+    <div id="status" class="status"></div>
+
+
+    <!-- ADD PRODUCT -->
+    <div class="card">
+
+      <h2 class="h">
+        Add a Product
+      </h2>
+
+      <p class="muted">
+        Select a category, enter the product information,
+        choose a photo and publish it.
+      </p>
+
+      <div class="cats">
+
+        <button
+          class="cat active"
+          data-cat="phone-covers"
+        >
+          📱 Phone Covers
+        </button>
+
+        <button
+          class="cat"
+          data-cat="key-chains"
+        >
+          🔑 Key Chains
+        </button>
+
+        <button
+          class="cat"
+          data-cat="pots"
+        >
+          🪴 Pots
+        </button>
+
+        <button
+          class="cat"
+          data-cat="hairbands"
+        >
+          🎀 Hairbands
+        </button>
+
+        <button
+          class="cat"
+          data-cat="bouquets"
+        >
+          💐 Bouquets
+        </button>
+
+      </div>
+
+
+      <form id="productForm">
+
+        <input
+          type="hidden"
+          id="category"
+          value="phone-covers"
+        >
+
+        <input
+          type="hidden"
+          id="editingId"
+          value=""
+        >
+
+        <div class="formgrid">
+
+          <div class="field">
+
+            <label>
+              Product name *
+            </label>
+
+            <input
+              id="name"
+              required
+              placeholder="e.g. Daisy Phone Cover"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Price (₹) *
+            </label>
+
+            <input
+              id="price"
+              required
+              type="number"
+              min="0"
+              step="1"
+              placeholder="250"
+            >
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>
+              Description
+            </label>
+
+            <textarea
+              id="description"
+              placeholder="Short product information..."
+            ></textarea>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Tag
+            </label>
+
+            <input
+              id="tag"
+              value="HANDMADE"
+              placeholder="HANDMADE"
+            >
+
+          </div>
+
+
+          <div class="field photo">
+
+            <label>
+              Product photo *
+            </label>
+
+            <input
+              id="image"
+              type="file"
+              accept="image/*"
+            >
+
+            <img
+              id="preview"
+              class="preview"
+              alt="Preview"
+            >
+
+          </div>
+
+        </div>
+
+        <br>
+
+        <button
+          class="primary"
+          id="saveBtn"
+          type="submit"
+        >
+          Publish Product
+        </button>
+
+        <button
+          class="secondary hidden"
+          id="cancelEdit"
+          type="button"
+        >
+          Cancel Edit
+        </button>
+
+      </form>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+    <div class="card">
+
+      <h2 class="h">
+        Published Products
+      </h2>
+
+      <p class="muted">
+        Edit or delete products you have already published.
+      </p>
+
+      <div
+        id="products"
+        class="products"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   FIREBASE CONFIG
+========================================= */
+
+const FIREBASE_CONFIG = {
+
+  apiKey:
+    "AIzaSyBdxMDrlc3XobUf2hl6XeE5c",
+
+  authDomain:
+    "fuzzy-creations.firebaseapp.com",
+
+  projectId:
+    "fuzzy-creations",
+
+  storageBucket:
+    "fuzzy-creations.firebasestorage.app",
+
+  messagingSenderId:
+    "816041463242",
+
+  appId:
+    "1:816041463242:web:d891d2b1d8c17f3c7d1333",
+
+  measurementId:
+    "G-JFC7RYP5RK"
+
+};
+
+
+/* =========================================
+   AUTHORIZED ADMIN EMAILS
+========================================= */
+
+const ADMIN_EMAILS = [
+  "aliyitgamerz72@gmail.com"
+];
+
+
+/* =========================================
+   WHATSAPP
+========================================= */
+
+const WA_NUMBER = "918381996879";
+
+
+/* =========================================
+   FIREBASE START
+========================================= */
+
+firebase.initializeApp(FIREBASE_CONFIG);
+
+const auth = firebase.auth();
+
+const db = firebase.firestore();
+
+const storage = firebase.storage();
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+let selectedCategory = "phone-covers";
+
+let editing = null;
+
+let currentImageUrl = "";
+
+
+/* =========================================
+   HELPER
+========================================= */
+
+const $ = id =>
+  document.getElementById(id);
+
+
+/* =========================================
+   STATUS MESSAGE
+========================================= */
+
+function msg(text, good = false){
+
+  $("status").textContent = text;
+
+  $("status").style.display = "block";
+
+  $("status").style.color =
+    good ? "#16834b" : "var(--rose)";
+}
+
+
+/* =========================================
+   CHECK ADMIN
+========================================= */
+
+function allowed(user){
+
+  return user &&
+    ADMIN_EMAILS
+      .map(x => x.toLowerCase())
+      .includes(
+        (user.email || "").toLowerCase()
+      );
+
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+$("loginBtn").onclick = async () => {
+
+  try{
+
+    const email =
+      $("email").value.trim();
+
+    const password =
+      $("password").value;
+
+    if(!email || !password){
+
+      $("loginMsg").textContent =
+        "Please enter email and password.";
+
+      return;
+
+    }
+
+    await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+  }catch(error){
+
+    $("loginMsg").textContent =
+      error.message;
+
+  }
+
+};
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+$("logoutBtn").onclick = () => {
+
+  auth.signOut();
+
+};
+
+
+/* =========================================
+   IMAGE PREVIEW
+========================================= */
+
+$("image").onchange = () => {
+
+  const file =
+    $("image").files[0];
+
+  if(!file) return;
+
+  $("preview").src =
+    URL.createObjectURL(file);
+
+  $("preview").style.display =
+    "block";
+
+};
+
+
+/* =========================================
+   CATEGORY BUTTONS
+========================================= */
+
+document
+  .querySelectorAll(".cat")
+  .forEach(button => {
+
+    button.onclick = () => {
+
+      document
+        .querySelectorAll(".cat")
+        .forEach(x =>
+          x.classList.remove("active")
+        );
+
+      button.classList.add("active");
+
+      selectedCategory =
+        button.dataset.cat;
+
+      $("category").value =
+        selectedCategory;
+
+    };
+
+  });
+
+
+/* =========================================
+   RESET FORM
+========================================= */
+
+$("cancelEdit").onclick =
+  () => resetForm();
+
+
+function resetForm(){
+
+  editing = null;
+
+  currentImageUrl = "";
+
+  $("productForm").reset();
+
+  $("category").value =
+    selectedCategory;
+
+  $("tag").value =
+    "HANDMADE";
+
+  $("saveBtn").textContent =
+    "Publish Product";
+
+  $("cancelEdit")
+    .classList
+    .add("hidden");
+
+  $("preview").style.display =
+    "none";
+
+  $("editingId").value = "";
+
+}
+
+
+/* =========================================
+   UPLOAD IMAGE
+========================================= */
+
+async function upload(file, id){
+
+  if(!file)
+    return currentImageUrl;
+
+
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/gif"
+  ];
+
+
+  if(!allowedTypes.includes(file.type)){
+
+    throw new Error(
+      "Please choose JPG, PNG, WEBP or GIF."
+    );
+
+  }
+
+
+  if(file.size > 8 * 1024 * 1024){
+
+    throw new Error(
+      "Image must be 8 MB or smaller."
+    );
+
+  }
+
+
+  const safeName =
+    file.name.replace(
+      /[^a-z0-9._-]/gi,
+      "_"
+    );
+
+
+  const ref = storage.ref(
+    `products/${selectedCategory}/${id}-${Date.now()}-${safeName}`
+  );
+
+
+  await ref.put(file);
+
+
+  return await ref.getDownloadURL();
+
+}
+
+
+/* =========================================
+   SAVE PRODUCT
+========================================= */
+
+$("productForm").onsubmit =
+  async event => {
+
+  event.preventDefault();
+
+  try{
+
+    const user =
+      auth.currentUser;
+
+
+    if(!allowed(user)){
+
+      throw new Error(
+        "This account is not authorized."
+      );
+
+    }
+
+
+    const id =
+      editing ||
+      db.collection("products").doc().id;
+
+
+    msg(
+      editing
+        ? "Updating product..."
+        : "Uploading and publishing..."
+    );
+
+
+    const imageFile =
+      $("image").files[0];
+
+
+    const imageUrl =
+      await upload(
+        imageFile,
+        id
+      );
+
+
+    if(!imageUrl){
+
+      throw new Error(
+        "Please choose a product photo."
+      );
+
+    }
+
+
+    const data = {
+
+      category:
+        selectedCategory,
+
+      name:
+        $("name").value.trim(),
+
+      price:
+        Number($("price").value),
+
+      description:
+        $("description").value.trim(),
+
+      tag:
+        $("tag").value.trim() ||
+        "HANDMADE",
+
+      imageUrl:
+
+        imageUrl,
+
+      updatedAt:
+        firebase.firestore
+          .FieldValue
+          .serverTimestamp()
+
+    };
+
+
+    if(!editing){
+
+      data.createdAt =
+        firebase.firestore
+          .FieldValue
+          .serverTimestamp();
+
+    }
+
+
+    await db
+      .collection("products")
+      .doc(id)
+      .set(
+        data,
+        { merge:true }
+      );
+
+
+    msg(
+      "Product published successfully!",
+      true
+    );
+
+
+    resetForm();
+
+
+    loadProducts();
+
+
+  }catch(error){
+
+    msg(
+      error.message
+    );
+
+  }
+
+};
+
+
+/* =========================================
+   LOAD PRODUCTS
+========================================= */
+
+async function loadProducts(){
+
+  try{
+
+    const snapshot =
+      await db
+        .collection("products")
+        .orderBy(
+          "createdAt",
+          "desc"
+        )
+        .get();
+
+
+    $("products").innerHTML = "";
+
+
+    snapshot.forEach(document => {
+
+      const product = {
+
+        id:
+          document.id,
+
+        ...document.data()
+
+      };
+
+
+      $("products")
+        .insertAdjacentHTML(
+          "beforeend",
+
+          `
+          <div class="item">
+
+            <img
+              src="${esc(product.imageUrl)}"
+              alt=""
+            >
+
+            <div class="itembody">
+
+              <div class="itemname">
+                ${esc(product.name)}
+              </div>
+
+              <div class="itemprice">
+                ₹${Number(
+                  product.price || 0
+                ).toLocaleString("en-IN")}
+              </div>
+
+              <div
+                class="muted"
+                style="font-size:11px"
+              >
+                ${esc(product.category)}
+              </div>
+
+              <br>
+
+              <div class="actions">
+
+                <button
+                  class="secondary"
+                  onclick='editProduct(${JSON.stringify(product)})'
+                >
+                  Edit
+                </button>
+
+                <button
+                  class="danger"
+                  onclick='deleteProduct("${product.id}")'
+                >
+                  Delete
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+          `
+        );
+
+    });
+
+
+  }catch(error){
+
+    msg(
+      "Could not load products: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   EDIT PRODUCT
+========================================= */
+
+window.editProduct = product => {
+
+  editing =
+    product.id;
+
+
+  selectedCategory =
+    product.category;
+
+
+  document
+    .querySelectorAll(".cat")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.cat ===
+          product.category
+      );
+
+    });
+
+
+  $("category").value =
+    product.category;
+
+
+  $("name").value =
+    product.name || "";
+
+
+  $("price").value =
+    product.price || "";
+
+
+  $("description").value =
+    product.description || "";
+
+
+  $("tag").value =
+    product.tag || "HANDMADE";
+
+
+  currentImageUrl =
+    product.imageUrl || "";
+
+
+  $("preview").src =
+    currentImageUrl;
+
+
+  $("preview").style.display =
+    currentImageUrl
+      ? "block"
+      : "none";
+
+
+  $("saveBtn").textContent =
+    "Save Changes";
+
+
+  $("cancelEdit")
+    .classList
+    .remove("hidden");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+
+/* =========================================
+   DELETE PRODUCT
+========================================= */
+
+window.deleteProduct =
+  async id => {
+
+  if(
+    !confirm(
+      "Delete this product?"
+    )
+  ) return;
+
+
+  try{
+
+    await db
+      .collection("products")
+      .doc(id)
+      .delete();
+
+
+    msg(
+      "Product deleted.",
+      true
+    );
+
+
+    loadProducts();
+
+
+  }catch(error){
+
+    msg(
+      error.message
+    );
+
+  }
+
+};
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function esc(value){
+
+  return String(
+    value ?? ""
+  ).replace(
+    /[&<>'"]/g,
+    character => ({
+
+      "&":"&amp;",
+
+      "<":"&lt;",
+
+      ">":"&gt;",
+
+      "'":"&#39;",
+
+      '"':"&quot;"
+
+    }[character])
+  );
+
+}
+
+
+/* =========================================
+   AUTH STATE
+========================================= */
+
+auth.onAuthStateChanged(
+  async user => {
+
+    if(
+      user &&
+      allowed(user)
+    ){
+
+      $("loginCard")
+        .classList
+        .add("hidden");
+
+
+      $("app")
+        .classList
+        .remove("hidden");
+
+
+      msg(
+        "Signed in as " +
+        user.email,
+        true
+      );
+
+
+      loadProducts();
+
+
+    }else{
+
+      $("app")
+        .classList
+        .add("hidden");
+
+
+      $("loginCard")
+        .classList
+        .remove("hidden");
+
+
+      if(user){
+
+        await auth.signOut();
+
+
+        $("loginMsg")
+          .textContent =
+          "This email is not authorized to manage products.";
+
+      }
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
